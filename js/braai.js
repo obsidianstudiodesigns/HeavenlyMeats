@@ -7,6 +7,7 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
 
 /* ------------------------------------------------------------------ */
 /* GLSL helpers                                                        */
@@ -74,7 +75,7 @@ const rand = (() => { let s = 1337; return () => ((s = (s * 16807) % 2147483647)
 /* ------------------------------------------------------------------ */
 export function createBraai(canvas, { reducedMotion = false, mobile = false } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: !mobile, powerPreference: 'high-performance', alpha: false });
-  const maxDpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.35 : 1.75);
+  const maxDpr = Math.min(window.devicePixelRatio || 1, mobile ? 1.5 : 1.75);
   let dpr = maxDpr;
   renderer.setPixelRatio(dpr);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -444,6 +445,9 @@ export function createBraai(canvas, { reducedMotion = false, mobile = false } = 
   haze.uniforms.uTime = U.uTime; // ShaderPass clones uniforms; re-link the shared clock
   composer.addPass(haze);
   composer.addPass(new OutputPass());
+  // phones render without MSAA; FXAA smooths the grid and coil edges cheaply
+  const fxaa = mobile ? new ShaderPass(FXAAShader) : null;
+  if (fxaa) composer.addPass(fxaa);
   const grade = new ShaderPass({
     uniforms: { tDiffuse: { value: null }, uTime: U.uTime },
     vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }`,
@@ -502,6 +506,7 @@ export function createBraai(canvas, { reducedMotion = false, mobile = false } = 
     const w = window.innerWidth, h = window.innerHeight;
     renderer.setSize(w, h, false);
     composer.setSize(w, h);
+    if (fxaa) fxaa.uniforms.resolution.value.set(1 / (w * dpr), 1 / (h * dpr));
     bloom.resolution.set(w / 2, h / 2);
     camera.aspect = w / h;
     // push the coil right of the headline on wide screens, up above it on phones
@@ -527,17 +532,23 @@ export function createBraai(canvas, { reducedMotion = false, mobile = false } = 
     if (!state.active) return;
     tick(Math.min(clock.getDelta(), 0.05));
   }
-  // adaptive resolution: step down on slow GPUs, never below 0.6x
+  // adaptive quality on slow GPUs: first drop the heat haze, then step resolution down
+  // to a floor that still looks sharp (1x on phones, whose screens are dense)
+  const dprFloor = mobile ? Math.min(1, maxDpr) : 0.75;
+  const slowFrame = mobile ? 1 / 28 : 1 / 40;
   let perfT = 0, perfN = 0, perfSettled = false;
   function adapt(dt) {
     if (perfSettled || state.intro < 1) return;
     perfT += dt; perfN++;
-    if (perfT < 1.2) return;
+    if (perfT < 1.5) return;
     const avg = perfT / perfN; perfT = 0; perfN = 0;
-    if (avg > 1 / 45 && dpr > 0.6) {
-      dpr = Math.max(0.6, dpr - 0.2);
+    if (avg <= slowFrame) { perfSettled = true; return; }
+    if (haze.enabled) { haze.enabled = false; return; }
+    if (dpr > dprFloor) {
+      dpr = Math.max(dprFloor, dpr - 0.15);
       renderer.setPixelRatio(dpr); composer.setPixelRatio(dpr);
       emberMat.uniforms.uPR.value = dpr;
+      if (fxaa) fxaa.uniforms.resolution.value.set(1 / (window.innerWidth * dpr), 1 / (window.innerHeight * dpr));
     } else perfSettled = true;
   }
   function tick(dt) {
