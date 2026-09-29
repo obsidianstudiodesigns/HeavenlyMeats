@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Heavenly Meats · Touwsrivier</title>
+  <meta name="description" content="Affordable, quality meat, fresh and frozen. Ouma's boerewors, Karoo lamb, beef, pork, chicken and game from 41 Logan Street, Touwsrivier. Call Veronica on 076 977 5683.">
+  <meta name="theme-color" content="#15110e">
+  <meta property="og:title" content="Heavenly Meats · Touwsrivier">
+  <meta property="og:description" content="Affordable, quality meat, fresh and frozen, from 41 Logan Street, Touwsrivier.">
+  <meta property="og:image" content="assets/img/cover.jpg">
+  <link rel="icon" type="image/png" href="assets/img/emblem.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ButcherShop",
+    "name": "Heavenly Meats",
+    "description": "Affordable, quality meat, fresh and frozen.",
+    "telephone": "+27769775683",
+    "email": "HeavenlyMeats2023@gmail.com",
+    "address": {"@type": "PostalAddress", "streetAddress": "41 Logan Street", "addressLocality": "Touwsrivier", "addressRegion": "Western Cape", "addressCountry": "ZA"},
+    "priceRange": "R",
+    "sameAs": ["https://www.facebook.com/profile.php?id=100091570411024"]
+  }
+  </script>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#counter">Skip to the meat</a>
+
+  <!-- Fixed WebGL braai: visible behind the hero and the visit section -->
+  <div class="stage" aria-hidden="true">
+    <canvas id="braai"></canvas>
+    <img class="stage__fallback" src="assets/img/flames.jpg" alt="">
+  </div>
+
+  <div class="curtain" aria-hidden="true">
+    <img src="assets/img/emblem.png" alt="">
+  </div>
+
+  <header class="nav" id="top">
+    <a class="nav__brand" href="#top" aria-label="Heavenly Meats, back to top">
+      <img src="assets/img/emblem.png" alt="" width="34" height="34">
+      <span>Heavenly Meats</span>
+    </a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#counter">The counter</a>
+      <a href="#cuts">Know your cuts</a>
+      <a href="#bulk">Bulk orders</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="btn btn--small" href="tel:+27769775683">Call 076 977 5683</a>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__inner">
+        <img class="hero__mark" src="assets/img/mark-full.png" alt="Heavenly Meats logo: a lamb with a halo above a winged red banner" width="560" height="217">
+        <h1 id="hero-title" class="hero__title">
+          <span class="line"><span>Heavenly</span></span>
+          <span class="line"><span>meat, down to</span></span>
+          <span class="line"><span>earth prices.</span></span>
+        </h1>
+        <p class="hero__lede">Fresh and frozen cuts, Ouma's boerewors and Karoo lamb from our counter at 41&nbsp;Logan Street, Touwsrivier.</p>
+        <div class="hero__actions">
+          <a class="btn" href="tel:+27769775683">Call to order</a>
+          <a class="btn btn--ghost" href="https://wa.me/27769775683?text=Hi%20Heavenly%20Meats%2C%20I%27d%20like%20to%20order%3A%20" target="_blank" rel="noopener">WhatsApp your list</a>
+        </div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- THE COUNTER: pinned 3D gallery -->
+    <section class="counter" id="counter" aria-labelledby="counter-title">
+      <div class="counter__pin">
+        <div class="counter__head">
+          <h2 id="counter-title">On the counter</h2>
+          <p>Fresh and frozen, priced to be fair. Stock changes week to week, so ask what's in today.</p>
+        </div>
+        <div class="reel" data-reel>
+          <ul class="reel__track" data-track>
+            <li class="slab" data-slab>
+              <figure>
+                <div class="slab__img"><img src="assets/img/wors.jpg" alt="Coils of boerewors browning on a braai grid" loading="lazy"></div>
+                <figcaption>
+                  <h3>Ouma's boerewors</h3>
+                  <p>Our family recipe: coriander, clove, nutmeg and allspice, in a proper coil.</p>
+                  <span class="tag">Fresh &amp; frozen</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="slab" data-slab>
+              <figure>
+                <div class="slab__img"><img src="assets/img/lamb.jpg" alt="Grilled lamb rib chops on a wooden board" loading="lazy"></div>
+                <figcaption>
+                  <h3>Karoo lamb &amp; mutton</h3>
+                  <p>Loin and chump chops, ribbetjie, leg, shoulder and neck for the potjie.</p>
+                  <span class="tag">Fresh &amp; frozen</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="slab" data-slab>
+              <figure>
+                <div class="slab__img"><img src="assets/img/beef.jpg" alt="A raw marbled sirloin steak with garlic and rosemary" loading="lazy"></div>
+                <figcaption>
+                  <h3>Beef</h3>
+                  <p>Rump, sirloin, T-bone and ribeye for the fire. Mince, stewing beef and roasts for the week.</p>
+                  <span class="tag">Fresh</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="slab" data-slab>
+              <figure>
+                <div class="slab__img"><img src="assets/img/ribs.jpg" alt="Glazed pork ribs over hot coals" loading="lazy"></div>
+                <figcaption>
+                  <h3>Pork</h3>
+                  <p>Ribs, bacon, ham, chops and belly. Ribs, bacon or ham? You tell us.</p>
+                  <span class="tag">Fresh &amp; frozen</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="slab" data-slab>
+              <figure>
+                <div class="slab__img"><img src="assets/img/wings.jpg" alt="Charred chicken wings on a grill" loading="lazy"></div>
+                <figcaption>
+                  <h3>Chicken</h3>
+                  <p>Wings worth craving, drumsticks, thighs and whole birds.</p>
+                  <span class="tag">Frozen</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="slab" data-slab>
+              <figure>
+                <div class="slab__img"><img src="assets/img/game.jpg" alt="A dark red cut of raw meat on butcher paper" loading="lazy"></div>
+                <figcaption>
+                  <h3>Game &amp; specials</h3>
+                  <p>Ostrich and venison when we can get it. Ask Veronica what came in this week.</p>
+                  <span class="tag">Seasonal</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="slab slab--note" data-slab>
+              <div class="note">
+                <h3>From the freezer</h3>
+                <ul>
+                  <li>Fish cakes</li>
+                  <li>Chicken wings</li>
+                  <li>Boerewors coils</li>
+                  <li>Pork ribs</li>
+                </ul>
+                <a class="btn btn--ghost" href="https://wa.me/27769775683?text=Hi%20Heavenly%20Meats%2C%20what%27s%20in%20the%20freezer%20this%20week%3F" target="_blank" rel="noopener">Ask what's in</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="counter__foot">
+          <div class="counter__progress" aria-hidden="true"><span data-progress></span></div>
+          <div class="reel__nav">
+            <button type="button" data-reel-go="first" aria-label="Back to the first cut">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 17l-5-5 5-5M11 17l-5-5 5-5"/></svg>
+            </button>
+            <button type="button" data-reel-go="prev" aria-label="Previous cut">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button type="button" data-reel-go="next" aria-label="Next cut">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUT CHART -->
+    <section class="cuts" id="cuts" aria-labelledby="cuts-title">
+      <div class="cuts__intro">
+        <h2 id="cuts-title">Know your cuts</h2>
+        <p>Different cuts, different fires. Pick a part of the animal to see what we cut from it and how it likes to be cooked.</p>
+        <div class="toggle" role="tablist" aria-label="Animal">
+          <button role="tab" aria-selected="true" data-animal="beef">Beef</button>
+          <button role="tab" aria-selected="false" data-animal="lamb">Lamb</button>
+          <button role="tab" aria-selected="false" data-animal="pork">Pork</button>
+        </div>
+      </div>
+
+      <div class="chart">
+        <svg class="chart__svg" viewBox="0 0 640 380" role="img" aria-labelledby="chart-label" data-chart>
+          <title id="chart-label">Butcher's cut chart</title>
+          <defs>
+            <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+              <line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1.1" opacity=".35"/>
+            </pattern>
+            <clipPath id="clip-beef"><path data-silhouette="beef"/></clipPath>
+            <clipPath id="clip-lamb"><path data-silhouette="lamb"/></clipPath>
+            <clipPath id="clip-pork"><path data-silhouette="pork"/></clipPath>
+          </defs>
+          <g data-animal-group="beef"></g>
+          <g data-animal-group="lamb" style="display:none"></g>
+          <g data-animal-group="pork" style="display:none"></g>
+        </svg>
+
+        <aside class="chart__card" aria-live="polite">
+          <p class="chart__part" data-cut-animal>Beef</p>
+          <h3 data-cut-name>Rump</h3>
+          <p data-cut-body>South Africa's favourite braai steak: big flavour, with a strip of fat that crisps on the coals.</p>
+          <dl>
+            <div><dt>Ask for</dt><dd data-cut-ask>Rump steak, rump roast, picanha</dd></div>
+            <div><dt>Cook it</dt><dd data-cut-cook>Braai, pan, roast</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="story" aria-labelledby="story-title">
+      <div class="story__media">
+        <img class="story__karoo" src="assets/img/karoo.jpg" alt="A windmill on the open Karoo plains at dusk" loading="lazy">
+      </div>
+      <div class="story__text">
+        <h2 id="story-title">A Karoo butcher, priced for Karoo pockets</h2>
+        <p>Heavenly Meats started in 2023 with one idea: good meat shouldn't cost a fortune. Veronica runs the counter on Logan Street, serving families, farm workers, braai masters and anyone passing through on the N1.</p>
+        <p>We keep it simple. Honest cuts, fair weights, fresh and frozen on hand, and a phone that gets answered.</p>
+        <figure class="story__quote">
+          <blockquote>“Different cuts. Different flavours. Endless meal possibilities.”</blockquote>
+          <figcaption>From our pork cut chart</figcaption>
+        </figure>
+      </div>
+      <div class="story__hang">
+        <img src="assets/img/hanging.jpg" alt="Bone-in rib steaks hanging to age in a cold room" loading="lazy">
+      </div>
+    </section>
+
+    <!-- BULK -->
+    <section class="bulk" id="bulk" aria-labelledby="bulk-title">
+      <div class="bulk__head">
+        <h2 id="bulk-title">Buying for a farm, a function or the freezer?</h2>
+        <p>We're a meat wholesaler as much as a butcher. Send your list and we'll have it packed and ready for collection.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <span class="steps__n">1</span>
+          <h3>Send your list</h3>
+          <p>WhatsApp or call with what you need and roughly how much. Kilos or people to feed, both work.</p>
+        </li>
+        <li>
+          <span class="steps__n">2</span>
+          <h3>Get a quote</h3>
+          <p>Veronica comes back with this week's prices and what's available fresh or frozen.</p>
+        </li>
+        <li>
+          <span class="steps__n">3</span>
+          <h3>Collect on Logan Street</h3>
+          <p>Your order is cut, packed and waiting at the counter.</p>
+        </li>
+      </ol>
+      <a class="btn" href="https://wa.me/27769775683?text=Hi%20Heavenly%20Meats%2C%20I%27d%20like%20a%20quote%20for%3A%20" target="_blank" rel="noopener">Send your list on WhatsApp</a>
+    </section>
+
+    <!-- VISIT: the fire returns -->
+    <section class="visit" id="visit" aria-labelledby="visit-title">
+      <div class="visit__card">
+        <h2 id="visit-title">Light the fire.<br>We'll bring the meat.</h2>
+        <dl class="visit__list">
+          <div><dt>Where</dt><dd>41 Logan Street<br>Touwsrivier, Western Cape</dd></div>
+          <div><dt>Call Veronica</dt><dd><a href="tel:+27769775683">076 977 5683</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:HeavenlyMeats2023@gmail.com">HeavenlyMeats2023@gmail.com</a></dd></div>
+          <div><dt>Hours</dt><dd>Call ahead to check today's hours and stock.</dd></div>
+        </dl>
+        <div class="visit__actions">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=41+Logan+Street+Touwsrivier" target="_blank" rel="noopener">Get directions</a>
+          <a class="btn btn--ghost" href="https://www.facebook.com/profile.php?id=100091570411024" target="_blank" rel="noopener">Follow on Facebook</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <img src="assets/img/mark-full.png" alt="Heavenly Meats" width="220" height="85" loading="lazy">
+    <p>Affordable, quality meat. 41 Logan Street, Touwsrivier.</p>
+    <p class="foot__small">© <span data-year>2026</span> Heavenly Meats. Photography via Unsplash.</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
